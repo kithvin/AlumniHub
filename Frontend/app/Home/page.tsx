@@ -179,7 +179,7 @@ export default function HomePage() {
           <h2 className="text-3xl font-bold md:text-4xl">Upcoming Alumni Events</h2>
           <p className="mx-auto mt-4 max-w-3xl text-lg text-blue-100">
             Keep track of reunions, workshops, networking sessions, and special
-            gatherings through one easy to use system.
+            gatherings through one easy touse system.
           </p>
 
           <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
