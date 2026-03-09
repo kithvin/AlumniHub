@@ -14,7 +14,7 @@ import { UsersModule } from './users/users.module';
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => ({
         uri: configService.get<string>('MONGODB_URI'),
-        dbName: 'StylecrateDB',
+        dbName: 'AlumniHubDB',
         retryWrites: true,
         w: 'majority',
         appName: 'AlumniHub',
