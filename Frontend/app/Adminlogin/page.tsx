@@ -1,10 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
+import toast from "react-hot-toast";
 
 export default function AdminLoginPage() {
+  const router = useRouter(); 
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -60,12 +63,42 @@ export default function AdminLoginPage() {
     return valid;
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (validateForm()) {
-      setSuccessMessage("Admin login validation successful");
-      console.log("Admin Login Data:", formData);
+    if (!validateForm()) {
+      toast.error("Please fill all required fields");
+      return;
+    }
+
+    try {
+      const res = await fetch("http://localhost:5000/api/admin/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (data.success) {
+        setSuccessMessage("Login successful");
+
+       
+        toast.success("Admin login successful");
+
+        router.push("/AdminDashbord");
+      } else {
+       
+        toast.error(data.message || "Login failed");
+      }
+    } catch (error) {
+      console.log(error);
+
+      
+      toast.error("Server error");
     }
   };
 
