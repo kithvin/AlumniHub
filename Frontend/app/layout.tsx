@@ -39,7 +39,8 @@ export default function RootLayout({
               padding: "12px 16px",
               border: "1px solid #e5e7eb",
               boxShadow: "0 6px 20px rgba(0,0,0,0.08)",
-              fontSize: "14px",
+              fontSize: "16px",
+              fontWeight: 600,
             },
 
             success: {
